@@ -18,6 +18,7 @@ col1, col2 = st.columns(2)
 if file_up is not None:
     url = 'temp.jpg'
     im = Image.open(file_up)
+    shape = im.size
     image = np.array(im)
     cv2.imwrite(url, cv2.cvtColor(image, cv2.COLOR_RGB2BGR))
 
@@ -26,8 +27,10 @@ if file_up is not None:
 
     with col1:
         st.write('Original Image')
+        image = cv2.resize(image, shape)
         st.image(image,use_column_width="auto")
     with col2:
         st.write('Transform Image')
+        anime_img = cv2.resize(anime_img, shape)
         st.image(anime_img, use_column_width="auto")
         
